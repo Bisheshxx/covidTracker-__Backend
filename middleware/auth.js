@@ -27,7 +27,7 @@ module.exports.verifyUser = function(req,res,next){
 module.exports.verifyAdmin = function(req, res, next){
 
     if(!req.user){
-        return res.status(200).json({message:'success'});
+        return res.status(200).json({message:'auth failed'});
     }else if(req.user.userType  !== Admin){
         return res.status(401).json({message:'Access denied!!'});
     }
@@ -41,7 +41,7 @@ module.exports.verifyEventManager = function(req, res , next){
 
     if(!req.user){
 
-        return res.status(200).json({message:'success'});
+        return res.status(200).json({message:'auth failed'});
     
     }else if (req.user.userType !== Event_Manager){
 
@@ -57,7 +57,7 @@ module.exports.verifyVisitor = function( req, res, next){
 
     if(!req.user){
 
-        return res.status(200).json({message:'success'});
+        return res.status(200).json({message:'auth failed'});
 
     }else if (req.user.userType !== Visitor){
 

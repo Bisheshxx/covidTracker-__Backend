@@ -39,27 +39,28 @@ function(req,res){
 
 //user_login
 router.post('/account/login',function(req,res){
-    const username = req.body.username
+    const email = req.body.email
     const password = req.body.password
-    User.findOne({username:username}).then(function(userData){
+    User.findOne({email:email}).then(function(userData){
         if(userData === null){
-            return res.status(201).json({success:false, message:'Invalid credential!!'});
+            return res.status(202).json({success:false, message:'Invalid credential!!'});
         } 
+        bcrypt.compare(password, userData.password, function(err,result){
+            if(result === false){
+                return res.status(202).json({success:false, message:'Invalid credentials!!'})
+            }
+    
+            const token = jwt.sign({userId:userData._id, username:userData.username},'secretKey')
+            console.log("successfully logged in")
+            res.status(200).json({success:true, message:'Auth success', data:userData})
+    
+        }).catch(function(err){
+    
+            res.status(404).json({error:err});
+    })
     })
     
-    bcrypt.compare(password, userData.password, function(err,result){
-        if(result === false){
-            return res.status(201).json({success:false, message:'Invalid credential!!'})
-        }
-
-        const token = jwt.sign({userId:userData._id, username:userData.username},'secretKey')
-        console.log("successfully logged in")
-        res.status(201).json({success:true, message:'Auth success', data:userData})
-
-    }).catch(function(err){
-        
-        res.status(500).json({error:err});
-})
+   
 })
 
 
