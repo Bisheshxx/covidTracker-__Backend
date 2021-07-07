@@ -12,6 +12,11 @@ const User = mongoose.model('User',{
         required:true,
         unique:true
     },
+    
+    "userType":{
+        type:String,
+        enum: ['Admin','Event_manager','Visitor']
+    },
 
     "password":{
         type:String,

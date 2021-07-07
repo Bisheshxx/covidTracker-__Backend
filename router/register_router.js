@@ -1,6 +1,7 @@
 const express = require("express");
 const bcrypt = require("bcrypt");
 const bodyParser = require('body-parser');
+const jwt = require('jsonwebtoken');
 const {check , validationResult}= require('express-validator');
 const User = require('../models/registration_model');
 const router = express.Router();
@@ -20,6 +21,7 @@ function(req,res){
             const newUser = new User({
                fullname : req.body.fullname,
                email : req.body.email,
+               userType: req.body.userType,
                password: hash
             });
 
@@ -34,5 +36,32 @@ function(req,res){
          res.status(400).json(error.array())
      }
 })
+
+//user_login
+router.post('/account/login',function(req,res){
+    const username = req.body.username
+    const password = req.body.password
+    User.findOne({username:username}).then(function(userData){
+        if(userData === null){
+            return res.status(201).json({success:false, message:'Invalid credential!!'});
+        } 
+    })
+    
+    bcrypt.compare(password, userData.password, function(err,result){
+        if(result === false){
+            return res.status(201).json({success:false, message:'Invalid credential!!'})
+        }
+
+        const token = jwt.sign({userId:userData._id, username:userData.username},'secretKey')
+        console.log("successfully logged in")
+        res.status(201).json({success:true, message:'Auth success', data:userData})
+
+    }).catch(function(err){
+        
+        res.status(500).json({error:err});
+})
+})
+
+
 
 module.exports = router;
