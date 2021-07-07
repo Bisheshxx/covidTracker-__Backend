@@ -34,3 +34,5 @@ function(req,res){
          res.status(400).json(error.array())
      }
 })
+
+module.exports = router;
