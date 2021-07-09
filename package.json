@@ -4,8 +4,8 @@
   "description": "website to help user to find the latest update about covid",
   "main": "app.js",
   "scripts": {
-    "test": "jest",
-    "start": "node ./app.js"
+    "test": "jest"
+    // "start": "node ./app.js"
   },
   "author": "",
   "license": "ISC",
