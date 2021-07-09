@@ -15,7 +15,10 @@ app.use(registration_route);
 
 
 
-
-app.listen(90, function(){
+let port = process.env.PORT;
+if (port == null || port == "") {
+  port = 90;
+}
+app.listen(port, function(){
     console.log("The server is running");
 });
