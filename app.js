@@ -5,6 +5,7 @@ const db = require('./db/db');
 const registration_route = require('./router/register_router');
 
 
+
 const app = express();
 app.use(cors());
 
