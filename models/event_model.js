@@ -11,7 +11,17 @@ const Event = mongoose.model('Event',{
 
     "image":{
         type:String
+    },
+
+    "venue":{
+        type:String
+    },
+
+    "date":{
+        type:String
     }
+
+    
 });
 
 module.exports = Event;
