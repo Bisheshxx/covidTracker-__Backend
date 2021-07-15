@@ -5,12 +5,14 @@ const event = require('../models/event_model');
 const auth = require('../middleware/auth');
 const upload = require('../middleware/upload');
 
+//to create a new event 
 router.post('/event/insert',upload.single('image'),function(req,res){
 
     if (req.file == undefined){
-        return res.status(400).json({message: 'invalid file!!'});
+        return res.status(202).json({message: 'invalid file!!'});
     }
     const newEvent = new event({
+        manager_id : req.body.manager_id,
          title : req.body.title,
          description : req.body.description,
          image : req.body.path,
@@ -19,7 +21,7 @@ router.post('/event/insert',upload.single('image'),function(req,res){
     });
 
     newEvent.save().then(function(result){
-        res.status(201).json({message: 'new event is created', success:true});
+        res.status(200).json({message: 'new event is created', success:true});
     }).catch(function(err){
         res.status(500).json({error:err})
     })
