@@ -44,3 +44,45 @@ router.post('/event/insert',upload.single('image'),function(req,res){
     })
 
     module.exports = router;
+
+    //deleting the event
+
+    router.delete('/event/delete/:id',auth.verifyAdmin,auth.verifyEventManager, function(req,res){
+        const id = req.params.id;
+        event.deleteOne({_id:id})
+        .then(function(result){
+             res.status(200).json({success:true, message:'Deleted!!'});
+        })
+        .catch(function(e){
+            res.status(500).json({error:e});
+        })
+    });
+
+    //updating the event 
+
+    router.put('/event/update',upload.single('image'), auth.verifyAdmin,auth.verifyEventManager, function(req,res){
+        if(req.file == undefined){
+            return res.status(202).json({success:false, message:'invalid file!!'});
+        }
+        const title = req.body.title;
+        const description = req.body.description;
+        const image = req.body.path;
+        const venu = req.body.venu;
+        const date = req.body.date;
+        const id = req.body.id; 
+
+        event.updateOne({_id:id},{
+            title:title,
+            description: description,
+            image: image,
+            venu: venu,
+            date: date
+        })
+        .then(function(result){
+            res.status(200).json({success:true, message:'Updated!!'});
+        })
+        .catch(function(e){
+            res.status(500).json({error:e});
+        })
+
+    });

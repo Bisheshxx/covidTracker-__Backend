@@ -49,6 +49,12 @@ router.post('/account/login',function(req,res){
             if(result === false){
                 return res.status(202).json({success:false, message:'Invalid credentials!!'})
             }
+
+            User.updateOne({email:email},{is_active:true}).then(function(){
+                
+            }).catch(function(e){
+                return res.status(500).json({success:false, message:err});
+            })
     
             const token = jwt.sign({userId:userData._id, username:userData.username},'secretKey')
             console.log("successfully logged in")
@@ -62,6 +68,33 @@ router.post('/account/login',function(req,res){
     
    
 })
+
+//fetcching the active users
+
+router.post('/user/showall', function(req,res){
+    // let is_active = req.params.is_active;
+    User.find({is_active:true})
+    .then(function(data){
+        return res.status(200).json({success:true,'data':data});
+    })
+    .catch(function(e){
+        return res.status(500).json({message: err, success:false});
+    })
+})
+
+//fetching all the users
+
+router.get('/user/showall', function(req,res){
+    User.find({})
+    .then(function(data){
+        return res.status(200).json({success:true, 'data':data});
+    })
+    .catch(function(e){
+        return res.status(500).json({success:false, message:err});
+    })
+});
+
+
 
 
 
