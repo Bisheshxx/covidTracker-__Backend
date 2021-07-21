@@ -58,7 +58,7 @@ router.post('/account/login',function(req,res){
     
             const token = jwt.sign({userId:userData._id, username:userData.username},'secretKey')
             console.log("successfully logged in")
-            res.status(200).json({success:true, message:'Auth success', data:userData})
+            res.status(200).json({success:true, message:'Auth success', data:userData, token:token})
     
         }).catch(function(err){
     

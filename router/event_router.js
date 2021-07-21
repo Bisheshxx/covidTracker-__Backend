@@ -60,16 +60,16 @@ router.post('/event/insert',upload.single('image'),function(req,res){
 
     //updating the event 
 
-    router.put('/event/update',upload.single('image'), auth.verifyAdmin,auth.verifyEventManager, function(req,res){
+    router.put('/event/update',upload.single('image'),auth.verifyUser, auth.verifyAdmin, function(req,res){
         if(req.file == undefined){
             return res.status(202).json({success:false, message:'invalid file!!'});
         }
         const title = req.body.title;
         const description = req.body.description;
-        const image = req.body.path;
+        const image = req.file.path;
         const venu = req.body.venu;
         const date = req.body.date;
-        const id = req.body.id; 
+        const id = req.body._id; 
 
         event.updateOne({_id:id},{
             title:title,

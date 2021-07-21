@@ -25,7 +25,9 @@ const User = mongoose.model('User',{
 
     "is_active":{
         required:true,
-        type:Boolean
+        type:Boolean,
+
+        default:false
     }
 });
 
