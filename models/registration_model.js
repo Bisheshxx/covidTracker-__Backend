@@ -21,6 +21,11 @@ const User = mongoose.model('User',{
     "password":{
         type:String,
         required: true
+    },
+
+    "is_active":{
+        required:true,
+        type:Boolean
     }
 });
 

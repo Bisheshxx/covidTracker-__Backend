@@ -31,4 +31,16 @@ router.post('/event/insert',upload.single('image'),function(req,res){
 
     })
 
+    //fetching the event user
+
+    router.get('/event/showall', auth.verifyAdmin, function(req,res){
+        event.find({})
+        .then(function(data){
+            return res.status(200).json({success:true,'data':data})
+        })
+        .catch(function(e){
+            return res.status(500).json({message:err, success:false})
+        })
+    })
+
     module.exports = router;
