@@ -5,6 +5,7 @@ const jwt = require('jsonwebtoken');
 const {check , validationResult}= require('express-validator');
 const User = require('../models/registration_model');
 const router = express.Router();
+const auth = require('../middleware/auth');
 const saltRounds = 10;
 
 //user registration 
@@ -93,6 +94,41 @@ router.get('/user/showall', function(req,res){
         return res.status(500).json({success:false, message:err});
     })
 });
+
+//deleting the user as an admin
+
+router.delete('/user/delete/:id',auth.verifyUser, auth.verifyAdmin, function(req,res){
+    const id = req.params.id;
+    User.deleteOne({_id:id})
+    .then(function(result){
+        res.status(200).json({success:true, message:'Deleted!!'});
+   })
+   .catch(function(e){
+       res.status(500).json({error:e});
+   })
+})
+
+//updating the user
+
+router.put('/user/update/',auth.verifyUser,auth.verifyAdmin, function(req,res){
+    const fullname = req.body.fullname;
+    const email = req.body.email;
+    const userType = req.body.userType;
+    const id = req.body._id; 
+
+    User.updateOne({_id: id},{
+        fullname:fullname,
+        email: email,
+        userType: userType,
+
+    })
+    .then(function(result){
+        res.status(200).json({success:true, message:'Updated!!'});
+    })
+    .catch(function(e){
+        res.status(500).json({error:e});
+    })
+})
 
 
 
