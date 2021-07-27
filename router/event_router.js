@@ -26,9 +26,6 @@ router.post('/event/insert',upload.single('image'),function(req,res){
         res.status(500).json({error:err})
     })
 
-    
-      
-
     })
 
     //fetching the event user as an admin
@@ -47,7 +44,7 @@ router.post('/event/insert',upload.single('image'),function(req,res){
 
     //deleting the event as an admin
 
-    router.delete('/event/delete/:id',auth.verifyUser,auth.verifyAdmin, function(req,res){
+    router.delete('/event/delete/:_id',auth.verifyUser,auth.verifyAdmin, function(req,res){
         const id = req.params.id;
         event.deleteOne({_id:id})
         .then(function(result){
@@ -86,3 +83,5 @@ router.post('/event/insert',upload.single('image'),function(req,res){
         })
 
     });
+
+    module.exports = router;
