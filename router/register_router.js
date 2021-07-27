@@ -95,6 +95,19 @@ router.get('/user/showall', function(req,res){
     })
 });
 
+//fetching user individually
+
+router.get('/user/show/:_id', function(req,res){
+    const id = req.params._id;
+    User.findOne({_id:id})
+    .then(function(data){
+        return res.status(200).json({success:true, 'data':data});
+    })
+    .catch(function(e){
+        return res.status(500).json({success:false, message:err});
+    })
+});
+
 //deleting the user as an admin
 
 router.delete('/user/delete/:id',auth.verifyUser, auth.verifyAdmin, function(req,res){
@@ -129,6 +142,7 @@ router.put('/user/update/',auth.verifyUser,auth.verifyAdmin, function(req,res){
         res.status(500).json({error:e});
     })
 })
+
 
 
 

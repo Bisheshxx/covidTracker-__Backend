@@ -31,9 +31,9 @@ router.post('/event/insert',upload.single('image'),function(req,res){
 
     })
 
-    //fetching the event user
+    //fetching the event user as an admin
 
-    router.get('/event/showall', auth.verifyAdmin, function(req,res){
+    router.get('/event/showall',auth.verifyUser, auth.verifyAdmin, function(req,res){
         event.find({})
         .then(function(data){
             return res.status(200).json({success:true,'data':data})
@@ -45,9 +45,9 @@ router.post('/event/insert',upload.single('image'),function(req,res){
 
     module.exports = router;
 
-    //deleting the event
+    //deleting the event as an admin
 
-    router.delete('/event/delete/:id',auth.verifyAdmin,auth.verifyEventManager, function(req,res){
+    router.delete('/event/delete/:id',auth.verifyUser,auth.verifyAdmin, function(req,res){
         const id = req.params.id;
         event.deleteOne({_id:id})
         .then(function(result){
@@ -58,9 +58,9 @@ router.post('/event/insert',upload.single('image'),function(req,res){
         })
     });
 
-    //updating the event 
+    //updating the event as an admin
 
-    router.put('/event/update',upload.single('image'),auth.verifyUser, auth.verifyAdmin, function(req,res){
+    router.put('/event/update/',upload.single('image'),auth.verifyUser, auth.verifyAdmin, function(req,res){
         if(req.file == undefined){
             return res.status(202).json({success:false, message:'invalid file!!'});
         }
