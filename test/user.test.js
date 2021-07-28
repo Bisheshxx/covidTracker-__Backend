@@ -14,17 +14,42 @@ afterAll(async ()=>{
     await mongoose.connection.close();
 });
 
+
+
 describe('Unit Testing', ()=>{
+    
+    //creating new user
+
     it("register",async ()=>{
         const user = {
             
-            "fullname" : "Test11",
-            "email": "test12@gmail.com",
-            "password":"test1234"
+            "fullname" : "Test111",
+            "email": "test121@gmail.com",
+            "password":"test12314"
         }
 
         return User.create(user).then((result)=>{
-            expect(result.fullname).toEqual("Test11")
+            expect(result.fullname).toEqual("Test111")
         })
     });
+
+    //updating the user
+
+    it("Update user", async ()=>{
+        const status = await User.updateOne({"_id":"60e7ff14302a4748482751d5"},{$set:{
+            "fullname":"Sakriyaaaaaaa"
+        }})
+        
+        expect(status.ok).toBe(1)
+
+    })
+
+    // deleting the user
+
+    it("Delete user",async ()=>{
+        var status = await User.deleteOne({"_id":"60e83de830f283310c121012"})
+        expect(status.ok).toBe(1)
+    })
 });
+
+

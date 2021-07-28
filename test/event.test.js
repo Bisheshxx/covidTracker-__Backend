@@ -15,6 +15,9 @@ afterAll(async () => {
 });
  
 describe('Event Testing', () => {
+
+    //event registration
+
     it("event_register", async () => {
         const event = {
  
@@ -30,4 +33,22 @@ describe('Event Testing', () => {
             expect(result.title).toEqual("Covid-19")
         })
     });
+
+    //updating the event
+
+    it("Update event", async ()=>{
+        const status = await Event.updateOne({"_id":"60f7cae634f6625378078b06"},{$set:{
+            "title":"appleeee"
+        }})
+        
+        expect(status.ok).toBe(1)
+
+    })
+
+    //deleting the event
+
+    it("Delete event",async ()=>{
+        var status = await Event.deleteOne({"_id":"60f7e3d18f5f3716d4efb6f7"})
+        expect(status.ok).toBe(1)
+    })
 });

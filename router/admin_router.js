@@ -77,6 +77,20 @@ router.put('/user/update/',auth.verifyUser,auth.verifyAdmin, function(req,res){
     })
 })
 
+//creating new role
+
+router.put('/newRole',auth.verifyUser,auth.verifyAdmin,function(req,res){
+    
+    User.updateOne({"_id":_id},{"userType":req.body.role}) 
+    .then(function(result){
+        res.status(200).json({success:true, message:'Updated!!'});
+    })
+    .catch(function(e){
+        res.status(500).json({error:e});
+    })
+
+})
+
 module.exports = router;
 
 
