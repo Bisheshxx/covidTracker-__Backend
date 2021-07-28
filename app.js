@@ -6,6 +6,7 @@ const path = require('path');
 const registration_route = require('./router/register_router');
 const event_route = require('./router/event_router');
 const admin_route = require('./router/admin_router');
+const password_route = require('./router/password_rest');
 
 
 
@@ -18,6 +19,7 @@ app.use(express.json());
 app.use(registration_route);
 app.use(event_route);
 app.use(admin_route);
+app.use(password_route);
 
 
 

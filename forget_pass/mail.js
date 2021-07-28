@@ -59,7 +59,7 @@ const sendMailMessage = (subject,email,content) =>{
   
     let emailMessage = {
         "from":'covidnepal81@gmail.com',
-        "to":email,
+        "to":'khadkasakriya81@gmail.com',
         "subject":subject,
         "template":'templete',
         "context":content,
