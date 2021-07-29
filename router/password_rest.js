@@ -5,18 +5,31 @@ const User = require('../models/registration_model');
 const router = express.Router();
 const saltRounds = 10;
 
-//password rest
-let pin = parseInt(Math.random() * 9999);
+//password rest sending the code to user
 
-let content = {
-    "heading":"Password Reset Confirmation Code",
-    "greeting":"Dear sir/madam",
-    "code":pin,
-    "message":"Your password reset confirmation code is",
-    "message2":"This is just a confirmation code. Not your real password.",
-    "task" : "Password Reset"    
-}
-sendMailMessage("Password Reset",'email',content);
+router.post('/forgotPassword/askEmail',(req,res)=>{
+    let email = req.body.email;
+    
+            Registration.findOne({"email":email}).then((user)=>{
+                
+                    let pin = parseInt(Math.random()*9999);
+                    let content = {
+                        "heading":"Password Reset Confirmation Code",
+                        "greeting":"Dear sir/madam",
+                        "code":pin,
+                        "message":"Your password reset confirmation code is",
+                        "message2":"This is just a confirmation code. Not your real password.",
+                        "task" : "Password Reset"    
+                    }
+                    sendMailMessage("Password Reset",email,content);
+                    return res.status(200).json({"success":true,"message":"Confirmation Code has been sent to your email address!!","code":pin,"user_id":User._id});
+                
+               
+            })
+            
+      
+})
+
 
 //api for password reset
 

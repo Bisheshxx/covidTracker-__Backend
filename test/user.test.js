@@ -23,20 +23,20 @@ describe('Unit Testing', ()=>{
     it("register",async ()=>{
         const user = {
             
-            "fullname" : "Test111",
-            "email": "test121@gmail.com",
-            "password":"test12314"
+            "fullname" : "Test1111",
+            "email": "test1211@gmail.com",
+            "password":"test123114"
         }
 
         return User.create(user).then((result)=>{
-            expect(result.fullname).toEqual("Test111")
+            expect(result.fullname).toEqual("Test1111")
         })
     });
 
     //updating the user
 
     it("Update user", async ()=>{
-        const status = await User.updateOne({"_id":"60e7ff14302a4748482751d5"},{$set:{
+        const status = await User.updateOne({"_id":"60e83de830f283310c121012"},{$set:{
             "fullname":"Sakriyaaaaaaa"
         }})
         
@@ -47,7 +47,7 @@ describe('Unit Testing', ()=>{
     // deleting the user
 
     it("Delete user",async ()=>{
-        var status = await User.deleteOne({"_id":"60e83de830f283310c121012"})
+        var status = await User.deleteOne({"_id":"60e7ff14302a4748482751d5"})
         expect(status.ok).toBe(1)
     })
 });

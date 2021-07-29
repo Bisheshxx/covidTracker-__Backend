@@ -21,23 +21,23 @@ describe('Event Testing', () => {
     it("event_register", async () => {
         const event = {
  
-            "title": "Covid-19",
-            "description": "deadlyvirus",
+            "title": "Covid-199",
+            "description": "deadlyvirus9",
             "image": "noimg.jpg",
-            "venue": "world",
-            "date": "17/11/2019"
+            "venue": "world9",
+            "date": "17/19/2019"
  
         }
  
         return Event.create(event).then((result) => {
-            expect(result.title).toEqual("Covid-19")
+            expect(result.title).toEqual("Covid-199")
         })
     });
 
     //updating the event
 
     it("Update event", async ()=>{
-        const status = await Event.updateOne({"_id":"60f7cae634f6625378078b06"},{$set:{
+        const status = await Event.updateOne({"_id":"60f7e3d18f5f3716d4efb6f7"},{$set:{
             "title":"appleeee"
         }})
         
@@ -48,7 +48,7 @@ describe('Event Testing', () => {
     //deleting the event
 
     it("Delete event",async ()=>{
-        var status = await Event.deleteOne({"_id":"60f7e3d18f5f3716d4efb6f7"})
+        var status = await Event.deleteOne({"_id":"60f7cae634f6625378078b06"})
         expect(status.ok).toBe(1)
     })
 });
