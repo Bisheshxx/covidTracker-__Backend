@@ -55,6 +55,33 @@ router.post('/event/insert',upload.single('image'),function(req,res){
         })
     });
 
+    //tracking number of people who click the btn
+
+    router.post('/event_toggle',auth.verifyUser,function(req,res){
+        const id = req.body.event_id;
+        const decision = req.body.decision;
+        const events= event.findOne({_id:id})
+        .then(function(data){
+            let user_decision = {}
+           
+            if(decision=='going' && !data.going.includes(req.user._id.toString())){
+                user_decision['going'] = req.user._id ;
+            }
+            else if(decision=='interested' && !data.interested.includes(req.user._id.toString())){
+                user_decision['interested'] = req.user._id ;
+            }
+            event.updateOne({_id:data._id},{$push:user_decision})
+            .then(function(result){
+                res.status(200).json({success:true, message:'Responded'});
+           })
+           .catch(function(e){
+               res.status(500).json({error:e});
+           })
+        })
+        
+
+    })
+
     //updating the event as an admin
 
     router.put('/event/update/',upload.single('image'),auth.verifyUser, auth.verifyAdmin, function(req,res){
