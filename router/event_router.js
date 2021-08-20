@@ -82,6 +82,16 @@ router.post('/event/insert',upload.single('image'),function(req,res){
 
     })
 
+    router.get('/event/showall', function(req,res){
+        event.find({})
+        .then(function(data){
+            return res.status(200).json({success:true, 'data':data});
+        })
+        .catch(function(e){
+            return res.status(500).json({success:false, message:err});
+        })
+    });
+
     //updating the event as an admin
 
     router.put('/event/update/',upload.single('image'),auth.verifyUser, auth.verifyAdmin, function(req,res){
