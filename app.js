@@ -7,6 +7,7 @@ const registration_route = require('./router/register_router');
 const event_route = require('./router/event_router');
 const admin_route = require('./router/admin_router');
 const password_route = require('./router/password_rest');
+const donate_route = require('./router/donate_router');
 
 
 
@@ -20,6 +21,7 @@ app.use(registration_route);
 app.use(event_route);
 app.use(admin_route);
 app.use(password_route);
+app.use(donate_route);
 
 
 

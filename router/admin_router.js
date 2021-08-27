@@ -1,5 +1,6 @@
 const express = require('express');
 const User = require('../models/registration_model');
+const Donate = require('../models/donate_model');
 const router = express.Router();
 const auth = require('../middleware/auth');
 
@@ -76,6 +77,18 @@ router.put('/user/update/',auth.verifyUser,auth.verifyAdmin, function(req,res){
         res.status(500).json({error:e});
     })
 })
+
+//fetching all the donation
+
+router.get('/donate/showall', function(req,res){
+    Donate.find({})
+    .then(function(data){
+        return res.status(200).json({success:true, 'data':data});
+    })
+    .catch(function(e){
+        return res.status(500).json({success:false, message:err});
+    })
+});
 
 
 

@@ -1,5 +1,4 @@
 const express = require('express');
-const bodyParser = require('body-parser');
 const router = express.Router();
 const event = require('../models/event_model');
 const auth = require('../middleware/auth');
@@ -28,9 +27,9 @@ router.post('/event/insert',upload.single('image'),function(req,res){
 
     })
 
-    //fetching the event user as an admin
+//fetching the event user as an admin
 
-    router.get('/event/showall',auth.verifyUser, auth.verifyAdmin, function(req,res){
+    router.get('/event/showall', function(req,res){
         event.find({})
         .then(function(data){
             return res.status(200).json({success:true,'data':data})
@@ -42,7 +41,7 @@ router.post('/event/insert',upload.single('image'),function(req,res){
 
     module.exports = router;
 
-    //deleting the event as an admin
+//deleting the event as an admin
 
     router.delete('/event/delete/:_id',auth.verifyUser,auth.verifyAdmin, function(req,res){
         const id = req.params.id;
@@ -55,7 +54,7 @@ router.post('/event/insert',upload.single('image'),function(req,res){
         })
     });
 
-    //tracking number of people who click the btn
+//tracking number of people who click the btn
 
     router.post('/event_toggle',auth.verifyUser,function(req,res){
         const id = req.body.event_id;
@@ -92,7 +91,7 @@ router.post('/event/insert',upload.single('image'),function(req,res){
         })
     });
 
-    //updating the event as an admin
+//updating the event as an admin
 
     router.put('/event/update/',upload.single('image'),auth.verifyUser, auth.verifyAdmin, function(req,res){
         if(req.file == undefined){

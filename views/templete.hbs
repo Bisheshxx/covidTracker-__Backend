@@ -13,25 +13,25 @@
             padding:0px;
             font-family:verdana;
             font-size:14px;
-            color:#24262b;
+            color:white;
         }
         .wrapper
         {
             
             height:fit-content;
-            background:#24262b;
+            background:rgb(0, 140, 255);;
             overflow:hidden;
             padding:20px;
             border-radius:10px;
         }
         .intro
         {
-            text-align:center;
+            text-align:right;
             font-size:25px;
             text-shadow:2px 2px 2px rgb(255, 255, 255);
             margin-bottom: 8px;
             font-weight: bold;
-            color: #a6967b;
+            color: white;
         }
         .contents
         {
@@ -68,21 +68,21 @@
             font-weight:bolder;
             margin-bottom:12px;
             padding-top:15px;
-            color:#a6967b;
+            color:white;
             text-align:center;
             margin-top:0px;
         }
         .info
         {
             margin-left:19px;
-            color:gray;
+            color:rgb(47, 58, 204);
  
         }
         .myCode
         {
             width:70px;
             height:30px;
-            border:1px solid gray;
+            border:1px solid rgb(247, 244, 244);
             margin-left:18px;
             border-radius:5px;
         }
@@ -93,6 +93,24 @@
 <body>
     
     {{#if_equal task 'Password Reset'}}
+   
+    <div class="wrapper col-6">
+    <h5 class="intro"> Covid tracker nepal </h5>
+    <div class="contents">
+        <h5 class="headings"> {{ heading }} </h5>
+        <h6 class="greeting"> {{ greeting }} </h6>
+        <p class="info"> {{ message }} </p>
+        <div class="myCode">
+            <p style="font-size:20px; margin-top:4px; margin-left:11px; font-weight:bolder;"> {{ code }} </p>
+        </div>
+        <p class="info"> {{ message2 }} </p>
+        <p style="text-align:center; font-weight:bolder;"> -Covid Nepal </p>
+    </div>
+
+
+    {{/if_equal}}
+
+     {{#if_equal task 'Donation'}}
    
     <div class="wrapper col-6">
     <h5 class="intro"> Covid tracker nepal </h5>
