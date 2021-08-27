@@ -19,7 +19,7 @@
         {
             
             height:fit-content;
-            background:rgb(0, 140, 255);;
+            background:rgba(13, 142, 247, 0.863);;
             overflow:hidden;
             padding:20px;
             border-radius:10px;
@@ -28,6 +28,7 @@
         {
             text-align:right;
             font-size:25px;
+            font-family: Arial, Helvetica, sans-serif;
             text-shadow:2px 2px 2px rgb(255, 255, 255);
             margin-bottom: 8px;
             font-weight: bold;
@@ -35,7 +36,7 @@
         }
         .contents
         {
-            background:#24262b;
+            background:#ffffff;
             width:100%;
             height:fit-content;
             padding: 4px;
@@ -52,37 +53,38 @@
         }
         .greeting
         {
-            font-family:Montserrat;
+            font-family:Arial, Helvetica, sans-serif;
             font-weight:bolder;
             margin-left:15px;
             font-size:23px;
             padding:6px;
-            color:#a6967b;
+            color:black;
             margin-top:0px;
             margin-bottom:0px;
         }
         .headings
         {
-            margin-left:15px;
+            margin-left:5px;
+            font-family:Arial, Helvetica, sans-serif;
             font-size:25px;
-            font-weight:bolder;
             margin-bottom:12px;
             padding-top:15px;
             color:white;
-            text-align:center;
+            {{!-- text-align:center; --}}
             margin-top:0px;
         }
         .info
         {
             margin-left:19px;
-            color:rgb(47, 58, 204);
+            color:black;
+            font-family: Arial, Helvetica, sans-serif;
  
         }
         .myCode
         {
             width:70px;
             height:30px;
-            border:1px solid rgb(247, 244, 244);
+            border:1px solid rgb(5, 5, 5);
             margin-left:18px;
             border-radius:5px;
         }
@@ -95,16 +97,15 @@
     {{#if_equal task 'Password Reset'}}
    
     <div class="wrapper col-6">
-    <h5 class="intro"> Covid tracker nepal </h5>
+    <h5 class="intro">Covidnepal </h5>
+    <h5 class="headings"> {{ heading }} </h5>
     <div class="contents">
-        <h5 class="headings"> {{ heading }} </h5>
         <h6 class="greeting"> {{ greeting }} </h6>
         <p class="info"> {{ message }} </p>
         <div class="myCode">
             <p style="font-size:20px; margin-top:4px; margin-left:11px; font-weight:bolder;"> {{ code }} </p>
         </div>
-        <p class="info"> {{ message2 }} </p>
-        <p style="text-align:center; font-weight:bolder;"> -Covid Nepal </p>
+       <p style="text-align:center; font-weight:bolder; color:black; font-family:Arial, Helvetica, sans-serif"> -Covid Nepal </p>
     </div>
 
 
@@ -113,7 +114,7 @@
      {{#if_equal task 'Donation'}}
    
     <div class="wrapper col-6">
-    <h5 class="intro"> Covid tracker nepal </h5>
+    <h5 class="intro"> Covidnepal </h5>
     <div class="contents">
         <h5 class="headings"> {{ heading }} </h5>
         <h6 class="greeting"> {{ greeting }} </h6>
