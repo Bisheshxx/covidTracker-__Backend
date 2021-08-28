@@ -9,8 +9,8 @@ router.post('/donate/amount',function(req,res){
 
     const newDonation = new donate({
         email : req.body.email,
-        donation: req.body.donation_amount,
-        remarks: req.body.Remarks,
+        donation_amount: req.body.donation_amount,
+        Remarks: req.body.Remarks,
         event_id:req.body.event_id
 });
 newDonation.save().then(function(result){
@@ -26,6 +26,23 @@ newDonation.save().then(function(result){
  }).catch(function(err){
      res.status(500).json({error:err})
  })
+})
+
+//getting total number of donation done
+
+router.get('/donate/amount',function(req,res){
+
+    donate.find({})
+    .then(function(data){
+        let totalAmount=0;
+        for (var i of data ){
+            totalAmount += i.donation_amount;
+        }
+        return res.status(200).json({success:true, 'data': data, totalAmount:totalAmount})
+    })
+    .catch(function(e){
+        return res.status(500).json({success:fail, message:err})
+    })
 })
 
 
