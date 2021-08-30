@@ -14,7 +14,7 @@ router.post('/event/insert',upload.single('image'),function(req,res){
         manager_id : req.body.manager_id,
          title : req.body.title,
          description : req.body.description,
-         image : req.body.path,
+         eimage : req.file.path,
          venu : req.body.venu,
          date: req.body.date
     });
