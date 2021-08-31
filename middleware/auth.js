@@ -5,6 +5,7 @@ module.exports.verifyUser = function(req,res,next){
 
     try{
         const token = req.headers.authorization.split(' ')[1];
+        console.log(token)
         const userData = jwt.verify(token,'secretKey');
 
         User.findOne({_id: userData.userId}).then(function(alldata){

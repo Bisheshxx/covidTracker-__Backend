@@ -8,10 +8,10 @@ const  {sendMailMessage} = require('../forget_pass/mail');
 router.post('/donate/amount',function(req,res){
 
     const newDonation = new donate({
+        event_id:req.body._id,
         email : req.body.email,
         donation_amount: req.body.donation_amount,
-        Remarks: req.body.Remarks,
-        event_id:req.body.event_id
+        Remarks: req.body.Remarks
 });
 newDonation.save().then(function(result){
     let content = {

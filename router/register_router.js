@@ -57,14 +57,16 @@ router.post('/account/login',function(req,res){
             })
     
             const token = jwt.sign({userId:userData._id, username:userData.username},'secretKey')
+            console.log(token)
             console.log("successfully logged in")
             res.status(200).json({success:true, message:'Auth success', data:userData, token:token})
     
-        }).catch(function(err){
+        })
+    })
+    .catch(function(err){
     
-            res.status(404).json({error:err});
-    })
-    })
+        res.status(404).json({error:err});
+})
     
    
 })

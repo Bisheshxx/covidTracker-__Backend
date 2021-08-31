@@ -38,11 +38,9 @@ router.post('/forgotPassword/askEmail',(req,res)=>{
 
 router.post('/resetPassword',(req,res)=>{
     let userId = req.body.userId;
-    let password = req.body.password;
-    
- 
+    let password = req.body.password; 
        bcrypt.hash(password,saltRounds,(err,hash)=>{
-            User.updateOne({"_id":userId},{"password":password}).then((result)=>{
+        Registration.updateOne({"_id":userId},{"password":password}).then((result)=>{
                 return res.status(200).json({"success":true,"message":"Login with your new Password!!"});
                 }).catch((err)=>{
                     return res.status(404).json({"success":false,"message":err});
