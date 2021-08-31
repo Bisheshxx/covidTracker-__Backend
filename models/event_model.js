@@ -24,7 +24,7 @@ const Event = mongoose.model('Event',{
         type:String
     },
 
-    "image":{
+    "eimage":{
         type:String
     },
 
