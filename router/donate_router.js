@@ -15,10 +15,11 @@ router.post('/donate/amount',function(req,res){
 });
 newDonation.save().then(function(result){
     let content = {
-        "heading":"Password Reset Confirmation ",
+        "heading":"Thank you!! ",
+        "heading_two":"For your kind donation",
         "greeting":"Dear sir/madam",
-        "message":"Your password reset confirmation code is",
-        "message2":"This is just a confirmation code. Not your real password.",
+        "message":"Thank you for your kind generosity of amount,",
+        "message2":"This is a conformation email. Please keep it as a reciept.",
         "task" : "Donation"   //main trigger point 
     }
     sendMailMessage("Donation",req.body.email,content);
