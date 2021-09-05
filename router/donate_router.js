@@ -16,7 +16,7 @@ router.post('/donate/amount',function(req,res){
 newDonation.save().then(function(result){
     let content = {
         "heading":"Thank you!! ",
-        "heading_two":"For your kind donation",
+        "heading_two":"For you'r kind donation ",
         "greeting":"Dear sir/madam",
         "message":"Thank you for your kind generosity of amount,",
         "message2":"This is a conformation email. Please keep it as a reciept.",
